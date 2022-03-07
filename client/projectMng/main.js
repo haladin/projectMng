@@ -6,22 +6,9 @@ const child_process = require("child_process");
 let mainWindow;
 
 function createWindow() {
-  var prc = child_process.spawn("dotnet", [
-    path.join(__dirname, "backend", "Api.dll"),
-  ]);
-
-  var ls = child_process.spawn("ls", [
-    "-la",
-    path.join(__dirname, "backend", "Api.dll"),
-  ]);
-
-  ls.stdout.on("data", (data) => {
-    console.log(`child stdout:\n${data}`);
-  });
-
-  ls.stderr.on("data", (data) => {
-    console.error(`child stderr:\n${data}`);
-  });
+  // var prc = child_process.spawn("dotnet", [
+  //   path.join(__dirname, "backend", "Api.dll"),
+  // ]);
 
   mainWindow = new BrowserWindow({
     width: 1280,
@@ -39,12 +26,11 @@ function createWindow() {
     })
   );
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", function () {
-    prc.kill();
-    ls.kill();
-    //cmd.kill();
+    // prc.kill();
+    
     mainWindow = null;
   });
 }
