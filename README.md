@@ -8,7 +8,7 @@
 
 ## Building and running
 
-Open bash, sh or other compatible shell: 
+Open bash or other "sh compatible": 
 
 ```
 cd ./client/projectMng
