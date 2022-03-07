@@ -16,23 +16,23 @@ export class BackendServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProjects() {
+  getAllProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.baseUrl}${this.projectUrl}`);
   }
 
-  getAllTasksForAProject(projectId: string) {
+  getAllTasksForAProject(projectId: string): Observable<PTask[]> {
     return this.http.get<PTask[]>(`${this.baseUrl}${this.projectUrl}/${projectId}/tasks`);
   }
 
-  getTaskHistory(taskId: string) {
+  getTaskHistory(taskId: string): Observable<HistoryEvent[]> {
     return this.http.get<HistoryEvent[]>(`${this.baseUrl}${this.taskUrl}/${taskId}/history`);
   }
 
-  updateProject(project: any) {
+  updateProject(project: any): Observable<Project> {
     return this.http.post<Project>(`${this.baseUrl}${this.projectUrl}`, project);
   }
 
-  updateTask(task: any) {
+  updateTask(task: any): Observable<PTask> {
     return this.http.post<PTask>(`${this.baseUrl}${this.taskUrl}`, task);
   }
 
