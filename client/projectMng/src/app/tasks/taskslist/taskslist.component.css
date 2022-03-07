@@ -1,0 +1,60 @@
+.material-cust-large-button {
+    font-size: 1.25rem;
+}
+
+.nopadding {
+    padding: 0 !important;    
+ }
+
+.task-header{    
+    background-color: #f1f3fa;
+    width: 100%;
+    padding: 1rem;
+    max-width: 390px;
+    min-width: 360px;
+    border-radius: 10px 10px 0px 0px ;
+    margin-bottom: 20px;
+}
+
+.column{
+    max-width: 390px;
+    min-width: 360px;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    padding-bottom: 10px;
+}
+
+.column-todo{
+    background-color: #4dacf556;   
+}
+
+.column-inprogress{
+    background-color: #ffc10756;   
+}
+
+.column-testing{
+    background-color: #d7e36056;   
+}
+
+.column-done{
+    background-color: #6fbf7356;   
+}
+
+
+.todo-header {
+    background-color: #1768aa;
+}
+
+.inprogress-header {
+    background-color: #ffc107;
+}
+
+.testing-header {
+    background-color: #8f9a27;
+}
+
+.done-header {
+    background-color: #357a38;
+}

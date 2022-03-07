@@ -1,0 +1,69 @@
+<ng-container>
+  <mat-toolbar class="example-header">
+    <ng-container *ngIf="haveAvatar">
+      <img [src]="avatar" />
+    </ng-container>
+    {{ currentProject }}</mat-toolbar>
+
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav
+      #sidenav
+      mode="side"
+      opened
+      class="example-sidenav"
+      [fixedInViewport]="false"
+    >
+      <mat-action-list>
+        <button (click)="openEditDialog(1)" mat-list-item>
+          <mat-icon>add</mat-icon>Add new project
+        </button>
+        <mat-divider></mat-divider>
+        <div
+          class="d-flex w-100"
+          mat-list-item
+          *ngFor="let project of projects; let i = index"
+          [ngStyle]="{
+            backgroundColor: currentProjectId === project.id ? 'darkgrey' : ''
+          }"
+        >
+          <button
+            style="text-align: left"
+            class="w-100 justify-content-end"
+            mat-button
+            (click)="onProjectClick(i)"
+          >
+            {{
+              project.name.length > 22
+                ? (project.name | slice: 0:22) + "..."
+                : project.name
+            }}
+          </button>
+          <button
+            [matMenuTriggerFor]="menu"
+            mat-icon-button
+            aria-label="Project menu"
+            class="ms-auto"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onEditClick(i)">
+              <mat-icon>edit</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item (click)="openDeleteProjectDialog(i)">
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-action-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-taskslist [projectId]="currentProjectId"></app-taskslist>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <mat-toolbar class="example-footer"></mat-toolbar>
+</ng-container>

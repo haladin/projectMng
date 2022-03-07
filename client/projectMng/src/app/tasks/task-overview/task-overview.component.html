@@ -1,0 +1,43 @@
+<mat-card class="card">
+ 
+  <mat-card-title >
+    {{ task?.title }}
+    
+  </mat-card-title>
+  <mat-card-subtitle [ngSwitch]="task?.priority">
+
+    <small align="end">
+      Created at:
+      {{ (task ? task.createdAt*1000: 0) | date: "hh:mm dd-MM-yyyy" }} | 
+      <small class="badge" *ngSwitchCase="0">
+        <span class="badge__status badge__status-low">Low</span>
+      </small>
+      <small class="badge" *ngSwitchCase="1">
+        <span class="badge__status badge__status-normal">Normal</span>
+      </small>
+      <small class="badge" *ngSwitchCase="2">
+        <span class="badge__status badge__status-high">High</span>
+      </small>
+      <small class="badge" *ngSwitchCase="3">
+        <span class="badge__status badge__status-critical">Critical</span>
+      </small> | <small>
+        {{status}}
+      </small>
+    </small>
+  </mat-card-subtitle>
+  <mat-card-content
+    ><p>{{ task?.description }}</p></mat-card-content
+  >
+  <mat-divider inset></mat-divider>
+  <mat-card-actions>
+    <button mat-button (click)="onEditClick(task?.id)">
+      <mat-icon>edit</mat-icon><small>Edit</small>
+    </button>
+    <button mat-button (click)="onHistoryClick(task?.id)">
+      <mat-icon>history</mat-icon><small>History</small>
+    </button>
+    <button mat-button (click)="onDeleteClick(task?.id)">
+      <mat-icon>delete</mat-icon><small>Delete</small>
+    </button>
+  </mat-card-actions>
+</mat-card>

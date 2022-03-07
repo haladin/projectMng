@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="row">
+    <ng-container *ngIf="projectId">
+      <div class="col-12">
+        <mat-toolbar-row>
+          <button class="ml-5" mat-button (click)="openEditDialog('noid')">
+            <mat-icon>note_add</mat-icon>New task
+          </button>
+
+          <button
+            class="ml-5"
+            mat-button
+            (click)="switchVew()"
+            *ngIf="!groupByStatus"
+          >
+            <mat-icon>list</mat-icon>Switch to Kanban view
+          </button>
+          <button
+            class="ml-5"
+            mat-button
+            (click)="switchVew()"
+            *ngIf="groupByStatus"
+          >
+            <mat-icon>view_list</mat-icon>Switch to list view
+          </button>
+          <mat-divider [vertical]="true"></mat-divider>
+          <form class="mr-3">
+            <mat-form-field>
+              <span matPrefix> </span>
+              <input type="tel" matInput placeholder="Search" name="search"  [(ngModel)]="search" (ngModelChange)="onChangeSearch($event)"/>
+              <mat-icon matSuffix *ngIf="!searching">search</mat-icon>
+              <button matSuffix mat-button *ngIf="searching" (click)="onClickClear()"><mat-icon>clear</mat-icon></button>
+            </mat-form-field>            
+          </form>
+        </mat-toolbar-row>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="row">
+    <ng-container *ngIf="groupByStatus">
+      <div class="col-12 col-lg-3 mt-5 column column-todo nopadding">
+        <div class="task-header todo-header">
+          <b> TODO ({{ getTaskByStatus(0).length }}) </b>
+        </div>
+        <app-task-overview
+          (editEm)="openEditDialog($event)"
+          (historyEm)="openHistoryDialog($event)"
+          (deleteEm)="openDeleteTaskDialog($event)"
+          [task]="task"
+          *ngFor="let task of getTaskByStatus(0)"
+        ></app-task-overview>
+      </div>
+
+      <div class="col-12 col-lg-3 mt-5 column column-inprogress nopadding">
+        <div class="task-header inprogress-header">
+          <b> In Progress ({{ getTaskByStatus(1).length }}) </b>
+        </div>
+        <app-task-overview
+          (editEm)="openEditDialog($event)"
+          (historyEm)="openHistoryDialog($event)"
+          (deleteEm)="openDeleteTaskDialog($event)"
+          [task]="task"
+          *ngFor="let task of getTaskByStatus(1)"
+        ></app-task-overview>
+      </div>
+
+      <div class="col-12 col-lg-3 mt-5 column column-testing nopadding">
+        <div class="task-header testing-header">
+          <b> Ready For Test ({{ getTaskByStatus(2).length }}) </b>
+        </div>
+        <app-task-overview
+          (editEm)="openEditDialog($event)"
+          (historyEm)="openHistoryDialog($event)"
+          (deleteEm)="openDeleteTaskDialog($event)"
+          [task]="task"
+          *ngFor="let task of getTaskByStatus(2)"
+        ></app-task-overview>
+      </div>
+
+      <div class="col-12 col-lg-3 mt-5 column column-done nopadding">
+        <div class="task-header done-header">
+          <b> Done ({{ getTaskByStatus(3).length }}) </b>
+        </div>
+        <app-task-overview
+          (editEm)="openEditDialog($event)"
+          (historyEm)="openHistoryDialog($event)"
+          (deleteEm)="openDeleteTaskDialog($event)"
+          [task]="task"
+          *ngFor="let task of getTaskByStatus(3)"
+        ></app-task-overview>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!groupByStatus">
+      <div class="col-12 col-lg-6 col-xl-4 col-xxl-3 mt-5" *ngFor="let task of getTasks()">
+        <app-task-overview
+          (editEm)="openEditDialog($event)"
+          (historyEm)="openHistoryDialog($event)"
+          (deleteEm)="openDeleteTaskDialog($event)"
+          [task]="task"
+        ></app-task-overview>
+      </div>
+    </ng-container>
+  </div>
+</div>

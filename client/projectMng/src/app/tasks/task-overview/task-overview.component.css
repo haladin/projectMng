@@ -1,0 +1,36 @@
+.card {
+    max-width: 350px;
+    min-width: 320px;
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.badge__status {
+    display: inline-block;
+    padding: 0 6px 1px 6px;
+    border-radius: 3px;
+    height: 10px;
+    line-height: 10px;
+}
+
+.badge__status-low {
+    background-color: #4BAE4F;
+    color: #fff;
+}
+
+.badge__status-normal {
+    background-color: #007ACC;
+    color: #fff;
+}
+
+.badge__status-high {
+    background-color: #FEC006;
+    color: #fff;
+}
+
+.badge__status-critical {
+    background-color: #F34235;
+    color: #fff;
+}

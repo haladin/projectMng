@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Task history</h2>
+<mat-dialog-content class="mat-typography">
+  <ul *ngFor="let hEvent of data; let i = index">
+    <li><b>{{ (hEvent ? hEvent.createdAt*1000: 0) | date: "hh:mm dd-MM-yyyy" }}</b>: <b>'{{hEvent.field}}'</b> changed from '{{hEvent.oldValue}}' to '{{hEvent.newValue}}' </li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
